@@ -1,10 +1,16 @@
 import { html, LitElement, css, customElement, property } from "lit-element";
 
-@customElement("canvas-snake")
-export class CanvasSnake extends LitElement {
+// typings
+import { TetrisConfig } from "TetrisTypes";
+
+@customElement("codegems-tetris")
+export class CodegemsTetris extends LitElement {
 	// styles
 	static styles = css`
 		:host {
+			display: block;
+			width: 100%;
+			height: 100%;
 			background: red;
 		}
 	`;
@@ -15,6 +21,8 @@ export class CanvasSnake extends LitElement {
 	canvas: HTMLCanvasElement;
 	@property()
 	context: CanvasRenderingContext2D;
+	@property()
+	config: TetrisConfig;
 
 	constructor() {
 		super();
@@ -48,4 +56,3 @@ export class CanvasSnake extends LitElement {
 		`;
 	}
 }
-// window.customElements.define("canvas-snake", CanvasSnake);

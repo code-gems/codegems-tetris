@@ -1,6 +1,6 @@
 {
-	"name": "canvas-snake",
-	"version": "1.0.0",
+	"name": "@code-gems/tetris",
+	"version": "0.0.1",
 	"description": "",
 	"main": "demo/index.html",
 	"scripts": {
@@ -11,14 +11,14 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/code-gems/canvas-snake.git"
+		"url": "git+https://github.com/code-gems/tetris.git"
 	},
 	"author": "codege.ms",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/code-gems/canvas-snake/issues"
+		"url": "https://github.com/code-gems/tetris/issues"
 	},
-	"homepage": "https://github.com/code-gems/canvas-snake#readme",
+	"homepage": "https://github.com/code-gems/tetris#readme",
 	"dependencies": {
 		"lit-element": "^2.2.1",
 		"lit-html": "^1.1.2"

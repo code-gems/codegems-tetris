@@ -1,7 +1,7 @@
 const path = require("path");
 
 module.exports = {
-	entry: "./src/canvas-snake.ts",
+	entry: "./src/codegem-tetris.ts",
 	// devtool: "inline-source-map",
 	mode: "development",
 	module: {
@@ -9,15 +9,16 @@ module.exports = {
 			{
 				test: /\.tsx?$/,
 				use: "ts-loader",
+				include: [path.resolve(__dirname, "src")],
 				exclude: /node_modules/
 			}
 		]
 	},
 	resolve: {
-		extensions: [".tsx", ".ts", ".js"]
+		extensions: [".ts", ".js"]
 	},
 	output: {
-		filename: "[name]-bundle.js",
+		filename: "codegem-tetris-bundle.js",
 		path: path.resolve(__dirname, "dist")
 	},
 	devServer: {

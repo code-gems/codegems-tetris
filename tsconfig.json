@@ -8,5 +8,7 @@
 		"target": "ESNext",
 		"allowJs": true,
 		"experimentalDecorators": true
-	}
+	},
+	"include": ["src/**/*"],
+	"exclude": ["node_modules"]
 }
