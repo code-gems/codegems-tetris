@@ -1,7 +1,7 @@
 import { html, LitElement, css, customElement, property } from "lit-element";
 
 // typings
-import { TetrisConfig } from "TetrisTypes";
+import { TetrisConfig } from "TetrisTypings";
 
 @customElement("codegems-tetris")
 export class CodegemsTetris extends LitElement {
@@ -12,6 +12,10 @@ export class CodegemsTetris extends LitElement {
 			width: 100%;
 			height: 100%;
 			background: red;
+		}
+
+		canvas {
+			border: 2px solid black;
 		}
 	`;
 
@@ -31,11 +35,12 @@ export class CodegemsTetris extends LitElement {
 
 	firstUpdated() {
 		this.canvas = this.shadowRoot.querySelector("canvas");
+		this.context = this.canvas.getContext("2d");
 		console.log(this.canvas);
 
-		this.context = this.canvas.getContext("2d");
 		this.context.beginPath();
-		this.context.arc(95, 50, 40, 0, 2 * Math.PI);
+		this.context.arc(95, 50, 40, 90, 2 * Math.PI);
+		this.context.fillRect(10, 10, 10, 10);
 		this.context.stroke();
 	}
 
@@ -51,7 +56,6 @@ export class CodegemsTetris extends LitElement {
 
 	render() {
 		return html`
-			<h1>WORKS !!!</h1>
 			<canvas></canvas>
 		`;
 	}
