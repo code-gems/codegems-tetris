@@ -1,7 +1,7 @@
 import { html, LitElement, css, customElement, property } from "lit-element";
 
 // typings
-import { TetrisConfig } from "TetrisTypings";
+import { TetrisConfig } from "tetris-typings";
 
 @customElement("codegems-tetris")
 export class CodegemsTetris extends LitElement {
@@ -11,11 +11,6 @@ export class CodegemsTetris extends LitElement {
 			display: block;
 			width: 100%;
 			height: 100%;
-			background: red;
-		}
-
-		canvas {
-			border: 2px solid black;
 		}
 	`;
 
@@ -24,24 +19,35 @@ export class CodegemsTetris extends LitElement {
 	@property()
 	canvas: HTMLCanvasElement;
 	@property()
-	context: CanvasRenderingContext2D;
+	ctx: CanvasRenderingContext2D;
 	@property()
 	config: TetrisConfig;
 
 	constructor() {
 		super();
 		this.disabled = false;
+		this.config = {
+			width: 200,
+			height: 400,
+			color: "#252525",
+			bgColor: "#bbff4f"
+		};
 	}
 
 	firstUpdated() {
 		this.canvas = this.shadowRoot.querySelector("canvas");
-		this.context = this.canvas.getContext("2d");
+		this.ctx = this.canvas.getContext("2d");
 		console.log(this.canvas);
 
-		this.context.beginPath();
-		this.context.arc(95, 50, 40, 90, 2 * Math.PI);
-		this.context.fillRect(10, 10, 10, 10);
-		this.context.stroke();
+		this.drawStage();
+
+		this.ctx.beginPath();
+		this.ctx.arc(95, 50, 40, 90, 2 * Math.PI);
+		this.ctx.lineWidth = 5;
+		this.ctx.fillRect(10, 10, 10, 10);
+		this.ctx.strokeStyle = "#00c0FF";
+		this.ctx.stroke();
+		this.ctx.closePath();
 	}
 
 	connectedCallback() {
@@ -54,9 +60,22 @@ export class CodegemsTetris extends LitElement {
 		console.log("%c DISCONNECTED", "font-size: 24px; color: red;");
 	}
 
+	drawStage() {
+		// fill background
+		this.ctx.fillStyle = this.config.bgColor;
+		this.ctx.fillRect(0, 0, this.config.width, this.config.height);
+
+		this.ctx.beginPath();
+		this.ctx.rect(0, 0, this.config.width, this.config.height);
+		this.ctx.stroke();
+	}
+
 	render() {
 		return html`
-			<canvas></canvas>
+			<canvas
+				width="${this.config.width}"
+				height="${this.config.height}"
+			></canvas>
 		`;
 	}
 }
