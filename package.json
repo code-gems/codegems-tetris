@@ -1,24 +1,25 @@
 {
-	"name": "@code-gems/tetris",
+	"name": "@code-gems/codegems-tetris",
 	"version": "0.0.1",
 	"description": "",
-	"main": "demo/index.html",
+	"main": "dist/codegems-tetris.js",
 	"scripts": {
 		"start": "node run start",
-		"dev": "webpack --config webpack.config.js --watch --mode development",
-		"build": "webpack --config webpack.config.js --mode production",
-		"serv": "webpack-dev-server"
+		"compile": "tsc",
+		"dev": "webpack --config webpack.config.js --watch --mode development --open",
+		"build": "webpack --config webpack.config.js --mode development --watch --open",
+		"serv": "tsc -w | webpack-dev-server"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/code-gems/tetris.git"
+		"url": "git+https://github.com/code-gems/codegems-tetris.git"
 	},
-	"author": "codege.ms",
+	"author": "code-gems.com",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/code-gems/tetris/issues"
+		"url": "https://github.com/code-gems/codegems-tetris/issues"
 	},
-	"homepage": "https://github.com/code-gems/tetris#readme",
+	"homepage": "https://github.com/code-gems/codegems-tetris#readme",
 	"dependencies": {
 		"lit-element": "^2.2.1",
 		"lit-html": "^1.1.2"
@@ -29,5 +30,10 @@
 		"webpack": "^4.41.2",
 		"webpack-cli": "^3.3.10",
 		"webpack-dev-server": "^3.9.0"
-	}
+	},
+	"files": [
+		"src",
+		"dist",
+		"package.json"
+	]
 }

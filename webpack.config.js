@@ -2,7 +2,7 @@ const path = require("path");
 
 module.exports = {
 	context: __dirname,
-	entry: "./src/codegem-tetris.ts",
+	entry: ["./demo/index.js", "./dist/codegems-tetris.js"],
 	devtool: "inline-source-map",
 	mode: "development",
 	module: {
@@ -10,8 +10,8 @@ module.exports = {
 			{
 				test: /\.tsx?$/,
 				use: "ts-loader",
-				include: [path.resolve(__dirname, "src")]
-				// exclude: /node_modules/
+				include: [path.resolve(__dirname, "src")],
+				exclude: /node_modules/
 			}
 		]
 	},
@@ -20,14 +20,15 @@ module.exports = {
 		modules: ["node_modules"]
 	},
 	output: {
-		filename: "codegem-tetris-bundle.js",
+		filename: "codegems-tetris.js",
 		path: path.resolve(__dirname, "dist")
 	},
 	devServer: {
 		open: true,
-		contentBase: "./",
-		publicPath: "./"
+		contentBase: "demo"
+		// publicPath: "dist"
 		// compress: true,
 		// port: 8089
-	}
+	},
+	watch: true
 };

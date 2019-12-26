@@ -23,6 +23,8 @@ export class CodegemsTetris extends LitElement {
 	@property()
 	config: TetrisConfig;
 
+	blockSize: number;
+
 	constructor() {
 		super();
 		this.disabled = false;
@@ -39,15 +41,17 @@ export class CodegemsTetris extends LitElement {
 		this.ctx = this.canvas.getContext("2d");
 		console.log(this.canvas);
 
+		this.blockSize = this.config.width / 10;
+
 		this.drawStage();
 
-		this.ctx.beginPath();
-		this.ctx.arc(95, 50, 40, 90, 2 * Math.PI);
-		this.ctx.lineWidth = 5;
-		this.ctx.fillRect(10, 10, 10, 10);
-		this.ctx.strokeStyle = "#00c0FF";
-		this.ctx.stroke();
-		this.ctx.closePath();
+		// this.ctx.beginPath();
+		// this.ctx.arc(95, 50, 40, 90, 2 * Math.PI);
+		// this.ctx.lineWidth = 5;
+		// this.ctx.fillRect(10, 10, 10, 10);
+		// this.ctx.strokeStyle = "#00c0FF";
+		// this.ctx.stroke();
+		// this.ctx.closePath();
 	}
 
 	connectedCallback() {
@@ -66,7 +70,37 @@ export class CodegemsTetris extends LitElement {
 		this.ctx.fillRect(0, 0, this.config.width, this.config.height);
 
 		this.ctx.beginPath();
-		this.ctx.rect(0, 0, this.config.width, this.config.height);
+		this.ctx.rect(2, 2, this.config.width - 4, this.config.height - 4);
+		// this.ctx.rect(0, 0, this.config.width, this.config.height);
+		this.ctx.stroke();
+
+		this.drawBlock(1, 1);
+		this.drawBlock(1, 2);
+		this.drawBlock(1, 3);
+		// this.drawBlock(2, 3);
+
+		this.drawMenu();
+	}
+
+	drawMenu() {
+		this.drawText(10, 50, "NEW GAME <");
+	}
+
+	drawText(x: number, y: number, text: string) {
+		this.ctx.fillStyle = this.config.color;
+		this.ctx.font = "18px monospace";
+		this.ctx.fillText(text, x, y, this.config.width);
+		this.ctx.stroke();
+	}
+
+	drawBlock(x: number, y: number) {
+		this.ctx.beginPath();
+		this.ctx.rect(
+			x * this.blockSize,
+			y * this.blockSize,
+			this.blockSize,
+			this.blockSize
+		);
 		this.ctx.stroke();
 	}
 
